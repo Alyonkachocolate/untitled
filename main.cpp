@@ -1,3 +1,29 @@
+#include <iostream>
+
+using std::cout;
+using std::cin;
+using std::endl;
+
+enum Cell {
+
+    /**
+     * Не атакованная и пустая
+     */
+            freee,
+    /**
+     * Корабль, но не атакованная
+     */
+            ship,
+    /**
+     *
+     */
+            discovered,
+    /**
+     *
+     */
+            attacked
+};
+
 Cell comp_arrangement(int x, int y) {
     Cell chip[10][10];
     for (auto &i : chip) {
@@ -140,4 +166,23 @@ Cell comp_arrangement(int x, int y) {
 
     }
     return chip[x][y];
+}
+
+int main() {
+
+    // рандомное заполение для бота
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            if (comp_arrangement(i,j) == freee || comp_arrangement(i,j) == discovered)
+                cout<<'.';
+            if (comp_arrangement(i,j) == attacked) cout<<'x';
+            if (comp_arrangement(i,j) == ship) cout<<'#';
+            cout<<' ';
+        }
+        cout<<endl;
+    }
+
+
+
+    return 0;
 }
